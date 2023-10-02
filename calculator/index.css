@@ -1,0 +1,33 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color:black;
+            border-radius: 5px;
+        }
+
+        .screen {
+            grid-column: span 4;
+            text-align: right;
+            padding: 10px;
+            background-color: #fff;
+            font-size: 24px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            padding: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }

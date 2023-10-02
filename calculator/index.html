@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="screen" id="screen">0</div>
+        <button class="btn" onclick="appendToScreen('7')">7</button>
+        <button class="btn" onclick="appendToScreen('8')">8</button>
+        <button class="btn" onclick="appendToScreen('9')">9</button>
+        <button class="btn" onclick="operate('+')">+</button>
+        <button class="btn" onclick="appendToScreen('4')">4</button>
+        <button class="btn" onclick="appendToScreen('5')">5</button>
+        <button class="btn" onclick="appendToScreen('6')">6</button>
+        <button class="btn" onclick="operate('-')">-</button>
+        <button class="btn" onclick="appendToScreen('1')">1</button>
+        <button class="btn" onclick="appendToScreen('2')">2</button>
+        <button class="btn" onclick="appendToScreen('3')">3</button>
+        <button class="btn" onclick="operate('*')">*</button>
+        <button class="btn" onclick="appendToScreen('0')">0</button>
+        <button class="btn" onclick="clearScreen()">C</button>
+        <button class="btn" onclick="calculate()">=</button>
+        <button class="btn" onclick="operate('/')">/</button>
+    </div>
+
+    <script>
+        let screen = document.getElementById('screen');
+        let currentInput = '';
+        let currentOperator = '';
+        let result = 0;
+
+        function appendToScreen(value) {
+            currentInput += value;
+            screen.innerText = currentInput;
+        }
+
+        function clearScreen() {
+            currentInput = '';
+            currentOperator = '';
+            result = 0;
+            screen.innerText = '0';
+        }
+
+        function operate(operator) {
+            if (currentOperator !== '') {
+                calculate();
+            }
+            currentOperator = operator;
+            result = parseFloat(currentInput);
+            currentInput = '';
+        }
+
+        function calculate() {
+            if (currentOperator === '+') {
+                result += parseFloat(currentInput);
+            } else if (currentOperator === '-') {
+                result -= parseFloat(currentInput);
+            } else if (currentOperator === '*') {
+                result *= parseFloat(currentInput);
+            } else if (currentOperator === '/') {
+                if (parseFloat(currentInput) === 0) {
+                    screen.innerText = 'Error';
+                    return;
+                }
+                result /= parseFloat(currentInput);
+            }
+
+            screen.innerText = result;
+            currentInput = '';
+            currentOperator = '';
+        }
+    </script>
+</body>
+</html>
